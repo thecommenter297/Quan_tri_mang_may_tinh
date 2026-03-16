@@ -192,11 +192,11 @@ Mở PowerShell với quyền quản trị (chuột phải nút Start -> Windows
         *(Giả sử chỉ số ifIndex là **6**)*
     *   Đặt IP và Gateway:
         ```powershell
-        New-NetIPAddress -InterfaceIndex 6 -IPAddress 192.168.1.10 -PrefixLength 24 -DefaultGateway 192.168.1.1
+        New-NetIPAddress -InterfaceIndex <ifIndex_number> -IPAddress 192.168.1.10 -PrefixLength 24 -DefaultGateway 192.168.1.1
         ```
     *   Đặt DNS Server (Trỏ về máy Server):
         ```powershell
-        Set-DnsClientServerAddress -InterfaceIndex 6 -ServerAddresses 192.168.1.4
+        Set-DnsClientServerAddress -InterfaceIndex <ifIndex_number> -ServerAddresses 192.168.1.4
         ```
 
 ---
