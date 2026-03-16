@@ -322,13 +322,13 @@ Mở PowerShell với quyền quản trị.
         ```powershell
         Get-NetAdapter
         ```
-        Tìm adapter có tên `NetworkTeam` và ghi lại số `ifIndex`. Giả sử là `15`.
+        Tìm adapter có tên `NetworkTeam` và ghi lại số `ifIndex`.
     *   **Bước 3.2: Thiết lập IP và Gateway.**
         ```powershell
-        New-NetIPAddress -InterfaceIndex 15 -IPAddress "192.168.1.100" -PrefixLength 24 -DefaultGateway "192.168.1.1"
+        New-NetIPAddress -InterfaceIndex <ifIndex_number> -IPAddress "192.168.1.100" -PrefixLength 24 -DefaultGateway "192.168.1.1"
         ```
     *   **Bước 3.3: Thiết lập DNS.**
         ```powershell
-        Set-DnsClientServerAddress -InterfaceIndex 15 -ServerAddresses "192.168.1.2"
+        Set-DnsClientServerAddress -InterfaceIndex <ifIndex_number> -ServerAddresses "192.168.1.2"
         ```
 4.  Kiểm tra lại bằng lệnh `ping` từ máy trạm Windows 10.
