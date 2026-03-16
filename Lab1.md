@@ -333,9 +333,7 @@ Mở PowerShell với quyền quản trị.
         ```
 4.  Kiểm tra lại bằng lệnh `ping` từ máy trạm Windows 10.
 
-:::spoiler Lưu ý để thông mạng thành công
-
----
+**Lưu ý để thông mạng thành công**:
 
 Trong VMware, khi bạn dùng địa chỉ IP tĩnh tự đặt (như `192.168.1.x`), chế độ **NAT** sẽ gây lỗi vì nó cố gắng cấp IP theo dải riêng của VMware và có tường lửa nội bộ. Để 2 máy thông nhau ổn định nhất khi làm Lab, bạn cần chuyển sang **LAN Segment**.
 
