@@ -272,8 +272,8 @@ Gộp hai hoặc nhiều card mạng vật lý thành một card mạng luận l
 **2. Chuẩn bị**
 *   Máy chủ `DC-2019` đã cài đặt ở phần 1.
 *   Thêm một card mạng thứ hai vào máy ảo `DC-2019`.
-    *   Tắt máy ảo `DC-2019`.
-    *   Chuột phải vào máy ảo, chọn **Settings**.
+    *   Tắt máy ảo (Shutdown) `DC-2019`.
+    *   Chuột phải vào máy ảo (VM), chọn **Settings**.
     *   Nhấn nút **Add...**, chọn **Network Adapter**, nhấn **Finish**.
     *   Chọn card mạng mới và cấu hình mạng là **Host-only**.
     *   Khởi động lại máy ảo.
