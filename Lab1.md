@@ -1,7 +1,3 @@
-Tuyệt vời. Dưới đây là nội dung cho Bài Lab 1, đã được cập nhật cho Windows Server 2019 và Windows 10, bổ sung lệnh PowerShell và viết lại theo yêu cầu của bạn.
-
----
-
 ### **Bài 1: TRIỂN KHAI VÀ CÀI ĐẶT HỆ ĐIỀU HÀNH WINDOWS SERVER 2019**
 
 **Các nội dung chính:**
