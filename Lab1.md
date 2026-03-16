@@ -115,18 +115,18 @@ Mở PowerShell với quyền quản trị (chuột phải vào nút Start -> Wi
         Ghi lại số `ifIndex` (ví dụ: 12) của card mạng có tên là `Ethernet0`.
     *   **Bước 2.2: Xóa các cấu hình IP cũ (nếu có).**
         ```powershell
-        Remove-NetIPAddress -InterfaceIndex 12 -Confirm:$false
+        Remove-NetIPAddress -InterfaceIndex <ifIndex_number> -Confirm:$false
         Remove-NetRoute -InterfaceIndex 12 -Confirm:$false
         ```
         *Thay số `12` bằng `ifIndex` bạn đã ghi lại.*
     *   **Bước 2.3: Thiết lập IP và Default Gateway.**
         ```powershell
-        New-NetIPAddress -InterfaceIndex 12 -IPAddress "192.168.1.4" -PrefixLength 24 -DefaultGateway "192.168.1.1"
+        New-NetIPAddress -InterfaceIndex <ifIndex_number> -IPAddress "192.168.1.4" -PrefixLength 24 -DefaultGateway "192.168.1.1"
         ```
         *`PrefixLength 24` tương đương với Subnet Mask `255.255.255.0`.*
     *   **Bước 2.4: Thiết lập DNS Server.**
         ```powershell
-        Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses "192.168.1.2"
+        Set-DnsClientServerAddress -InterfaceIndex <ifIndex_number> -ServerAddresses "192.168.1.2"
         ```
 *Lưu ý: Lặp lại các bước trên để cài đặt và cấu hình máy trạm Windows 10 với thông tin tương ứng.*
 
