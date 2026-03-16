@@ -332,12 +332,15 @@ Mở PowerShell với quyền quản trị.
         Set-DnsClientServerAddress -InterfaceIndex <ifIndex_number> -ServerAddresses "192.168.1.2"
         ```
 4.  Kiểm tra lại bằng lệnh `ping` từ máy trạm Windows 10.
+```powershell
+ping 192.168.1.100
+```
 
 **Lưu ý để thông mạng thành công**:
 
 Trong VMware, khi bạn dùng địa chỉ IP tĩnh tự đặt (như `192.168.1.x`), chế độ **NAT** sẽ gây lỗi vì nó cố gắng cấp IP theo dải riêng của VMware và có tường lửa nội bộ. Để 2 máy thông nhau ổn định nhất khi làm Lab, bạn cần chuyển sang **LAN Segment**.
 
-### Cách sửa lỗi để Ping thành công:
+### Cách sửa để Ping thành công:
 
 **Bước 1: Chỉnh cấu hình mạng trên máy Client (Win 10)**
 1.  Tại cửa sổ **Virtual Machine Settings** bạn đang mở, mục **Network connection**.
