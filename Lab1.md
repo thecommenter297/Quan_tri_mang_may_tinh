@@ -1,5 +1,5 @@
 ### **Bài 1: TRIỂN KHAI VÀ CÀI ĐẶT HỆ ĐIỀU HÀNH WINDOWS SERVER 2019**
-
+> Những cái này phải được làm TRƯỚC KHI SANG LAB2
 **Các nội dung chính:**
 *   Cài đặt hệ điều hành Windows Server 2019 Datacenter (Desktop Experience).
 *   Cài đặt hệ điều hành Windows Server 2019 Datacenter (Server Core) (Tham khảo).
