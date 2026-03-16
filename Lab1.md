@@ -116,9 +116,9 @@ Mở PowerShell với quyền quản trị (chuột phải vào nút Start -> Wi
     *   **Bước 2.2: Xóa các cấu hình IP cũ (nếu có).**
         ```powershell
         Remove-NetIPAddress -InterfaceIndex <ifIndex_number> -Confirm:$false
-        Remove-NetRoute -InterfaceIndex 12 -Confirm:$false
+        Remove-NetRoute -InterfaceIndex <ifIndex_number> -Confirm:$false
         ```
-        *Thay số `12` bằng `ifIndex` bạn đã ghi lại.*
+        *Thay `<ifIndex_number>` bằng `ifIndex` bạn đã ghi lại.*
     *   **Bước 2.3: Thiết lập IP và Default Gateway.**
         ```powershell
         New-NetIPAddress -InterfaceIndex <ifIndex_number> -IPAddress "192.168.1.4" -PrefixLength 24 -DefaultGateway "192.168.1.1"
