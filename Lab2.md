@@ -86,8 +86,8 @@ Mở PowerShell với quyền quản trị và chạy lệnh sau. Hệ thống s
 Install-ADDSForest `
     -DomainName "bkaptech.vn" `
     -DomainNetbiosName "BKAPTECH" `
-    -DomainMode Win2016 `
-    -ForestMode Win2016 `
+    -DomainMode 7 `
+    -ForestMode 7 `
     -InstallDns `
     -Force
 ```
