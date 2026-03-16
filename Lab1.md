@@ -332,3 +332,47 @@ Mở PowerShell với quyền quản trị.
         Set-DnsClientServerAddress -InterfaceIndex <ifIndex_number> -ServerAddresses "192.168.1.2"
         ```
 4.  Kiểm tra lại bằng lệnh `ping` từ máy trạm Windows 10.
+
+:::spoiler Lưu ý để thông mạng thành công
+
+---
+
+Trong VMware, khi bạn dùng địa chỉ IP tĩnh tự đặt (như `192.168.1.x`), chế độ **NAT** sẽ gây lỗi vì nó cố gắng cấp IP theo dải riêng của VMware và có tường lửa nội bộ. Để 2 máy thông nhau ổn định nhất khi làm Lab, bạn cần chuyển sang **LAN Segment**.
+
+### Cách sửa lỗi để Ping thành công:
+
+**Bước 1: Chỉnh cấu hình mạng trên máy Client (Win 10)**
+1.  Tại cửa sổ **Virtual Machine Settings** bạn đang mở, mục **Network connection**.
+2.  Tích chọn vào ô **LAN segment**.
+3.  Nhấn vào nút **LAN Segments...** ngay bên cạnh.
+4.  Nhấn **Add**, gõ tên bất kỳ (ví dụ: `Hoc_Tap`) rồi nhấn **OK**.
+5.  Ở ô chọn của LAN segment, chọn đúng tên `Hoc_Tap` vừa tạo.
+6.  Nhấn **OK** để lưu lại.
+
+**Bước 2: Chỉnh cấu hình mạng trên máy Server (Win 2019)**
+1.  Tắt máy Server hoặc vào **Settings** của nó.
+2.  Vào mục **Network Adapter**.
+3.  Cũng chọn **LAN segment** và chọn đúng tên `Hoc_Tap` giống hệt máy Client.
+4.  Nhấn **OK**.
+
+**Bước 3: Kiểm tra IP bằng PowerShell**
+Trên máy Client, mở PowerShell gõ lệnh sau để đảm bảo máy đang nhận đúng IP tĩnh đã đặt:
+```powershell
+Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress, InterfaceAlias
+```
+*Nếu IP hiện ra đúng là `192.168.1.10`, hãy chuyển sang bước tiếp theo.*
+
+**Bước 4: Tắt Firewall (Bắt buộc)**
+Tường lửa của Windows sẽ chặn lệnh Ping. Bạn chạy lệnh này trên **cả 2 máy** (Server và Client):
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+```
+
+**Bước 5: Thử Ping lại**
+Từ máy Client, gõ:
+```powershell
+ping 192.168.1.100
+```
+
+**Lưu ý:** Sau khi 2 máy đã thông nhau (Ping thấy nhau), bạn hãy **Take Snapshot** ngay lập tức cho cả 2 máy để lưu lại mốc mạng chuẩn này. Sau này làm Lab lỗi chỉ cần quay lại mốc này là xong.
+:::
