@@ -193,6 +193,11 @@ Add-ADGroupMember -Identity "GG_S_Marketings" -Members "cuongnt"
         ```powershell
         Add-WindowsCapability -Online -Name "Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0"
         ```
+> P/S: Thực ra khi máy client đã vào mạng nội bộ nó sẽ mất kết nối Internet nên sẽ không tải được như trên. Nên ta sẽ mượn tạm Internet:
+> * Vào phần cài đặt máy ảo (VMware/VirtualBox), đổi Card mạng của máy Win 10 từ LAN Segment (hoặc Internal) sang NAT.
+> * Vào phần IP trong Win 10, chỉnh lại thành Obtain an IP address automatically (để nó nhận IP từ modem ảo và có mạng).
+> * Tiến hành cài đặt RSAT như hướng dẫn (lúc này nó sẽ tải được từ internet).
+> * Sau khi cài xong, bạn chỉnh ngược lại: Đổi Card mạng về LAN Segment, đặt lại IP tĩnh .10 và DNS .100 để tiếp tục làm Lab.
 
 **2. Kiểm tra:**
 1.  Đăng xuất khỏi tài khoản Administrator trên máy `W10-CLIENT01`.
