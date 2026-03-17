@@ -145,7 +145,7 @@ Add-ADGroupMember -Identity "GG_S_Marketings" -Members "cuongnt"
     *   **GUI:** Mở **Properties** của user `quanch`, qua tab **Account**, trong **Account options**, tích chọn **User cannot change password**.
     *   **PowerShell:**
         ```powershell
-        Set-ADUser -Identity "quanch" -UserCannotChangePassword $true
+        Set-ADUser -Identity "quanch" -CannotChangePassword $true
         ```
 
 4.  **Tài khoản `quanch` hết hạn vào ngày 31/12/2026:**
