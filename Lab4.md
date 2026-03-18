@@ -144,6 +144,6 @@ AppLocker yêu cầu dịch vụ này phải chạy để hoạt động. Chúng
 9.  Nhấn **Next** qua các bước còn lại và **Create**.
 
 **3. Cập nhật và Kiểm tra**
-> Nhớ phải để máy W10-CLIENT01 trong mục Computers và kéo nó vào OU Technical thì Policy mới hoạt động.
+> Nhớ phải kéo máy W10-CLIENT01 trong mục Computers vào vào OU Technical thì Policy mới hoạt động.
 1.  Chạy `gpupdate /force` trên máy client và khởi động lại máy để chính sách máy tính có hiệu lực.
 2.  Đăng nhập bằng tài khoản `hungnq` và thử chạy Edge. Bạn sẽ nhận được thông báo chương trình đã bị chặn bởi quản trị viên.
