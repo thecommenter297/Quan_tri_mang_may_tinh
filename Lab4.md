@@ -123,7 +123,7 @@ Mở PowerShell với quyền quản trị trên `DC01-2019`.
 
 ### **Phần D: Giới hạn Phần mềm với AppLocker**
 
-**Mục tiêu:** Ngăn chặn người dùng trong phòng Technical chạy phần mềm không được phép (ví dụ: Firefox).
+**Mục tiêu:** Ngăn chặn người dùng trong phòng Technical chạy phần mềm không được phép (ví dụ: Microsoft Edge).
 
 **1. Bật dịch vụ Application Identity**
 AppLocker yêu cầu dịch vụ này phải chạy để hoạt động. Chúng ta sẽ bật nó thông qua GPO.
@@ -133,16 +133,16 @@ AppLocker yêu cầu dịch vụ này phải chạy để hoạt động. Chúng
 4.  Mở nó ra, chọn **Define this policy setting** và đặt chế độ khởi động là **Automatic**. Nhấn **OK**.
 
 **2. Tạo chính sách AppLocker**
-1.  Tạo một GPO mới liên kết tới OU **Technical**, đặt tên là `Technical_AppLocker_Block_Firefox`.
+1.  Tạo một GPO mới liên kết tới OU **Technical**, đặt tên là `Technical_AppLocker_Block_Edge`.
 2.  Edit GPO, điều hướng đến: `Computer Configuration` -> `Policies` -> `Windows Settings` -> `Security Settings` -> `Application Control Policies` -> `AppLocker`.
 3.  **Quan trọng:** Chuột phải vào **Executable Rules** và chọn **Create Default Rules**. Thao tác này đảm bảo các file hệ thống của Windows vẫn có thể chạy.
 4.  Chuột phải vào **Executable Rules** một lần nữa và chọn **Create New Rule...**.
 5.  Nhấn **Next**.
 6.  Tại màn hình **Permissions**, chọn Action là **Deny**.
 7.  Tại màn hình **Conditions**, chọn **Path**.
-8.  Nhấn **Browse Files...** và trỏ đến file thực thi của Firefox (ví dụ: `C:\Program Files\Mozilla Firefox\firefox.exe`).
+8.  Nhấn **Browse Files...** và trỏ đến file thực thi của Edge (ví dụ: `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`).
 9.  Nhấn **Next** qua các bước còn lại và **Create**.
 
 **3. Cập nhật và Kiểm tra**
 1.  Chạy `gpupdate /force` trên máy client và khởi động lại máy để chính sách máy tính có hiệu lực.
-2.  Đăng nhập bằng tài khoản `hungnq` và thử chạy Firefox. Bạn sẽ nhận được thông báo chương trình đã bị chặn bởi quản trị viên.
+2.  Đăng nhập bằng tài khoản `hungnq` và thử chạy Edge. Bạn sẽ nhận được thông báo chương trình đã bị chặn bởi quản trị viên.
