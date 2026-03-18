@@ -16,7 +16,7 @@ Cài đặt và cấu hình cơ bản cho một máy chủ Windows Server 2019 p
 **2. Chuẩn bị**
 *   **Máy chủ (Server):**
     *   Hệ điều hành: Windows Server 2019 Datacenter
-    *   Tên máy: `DC-2019`
+    *   Tên máy: `DC01-2019`
     *   IP Address: `192.168.1.4`
     *   Subnet Mask: `255.255.255.0` (hoặc Prefix Length: `24`)
     *   Default Gateway: `192.168.1.1`
