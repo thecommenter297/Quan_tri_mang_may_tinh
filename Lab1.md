@@ -129,12 +129,6 @@ Mở PowerShell với quyền quản trị (chuột phải vào nút Start -> Wi
         ```powershell
         Set-DnsClientServerAddress -InterfaceIndex <ifIndex_number> -ServerAddresses "192.168.1.2"
         ```
-*Lưu ý: Lặp lại các bước trên để cài đặt và cấu hình máy trạm Windows 10 với thông tin tương ứng.*
-
----
-
-Dưới đây là phần bổ sung cấu hình chi tiết cho máy **Client Windows 10 x64** vào Bài Lab 1. Phần này hướng dẫn bạn cách thiết lập máy trạm để chuẩn bị cho việc kết nối và làm việc với máy chủ trong các bài lab sau.
-
 ---
 
 ### **1.2 Cài đặt và cấu hình máy trạm Windows 10 x64**
