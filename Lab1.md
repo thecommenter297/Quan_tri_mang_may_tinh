@@ -184,7 +184,7 @@ Mở PowerShell với quyền quản trị (chuột phải nút Start -> Windows
         ```powershell
         Get-NetAdapter
         ```
-        *(Giả sử chỉ số ifIndex là **6**)*
+        *Để ý nhớ số ifIndex*
     *   Đặt IP và Gateway:
         ```powershell
         New-NetIPAddress -InterfaceIndex <ifIndex_number> -IPAddress 192.168.1.10 -PrefixLength 24 -DefaultGateway 192.168.1.1
