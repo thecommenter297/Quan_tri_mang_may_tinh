@@ -125,7 +125,8 @@ Set-Acl -Path $pathSale -AclObject $acl
 ```
 
 #### **Phần D: Kiểm tra Phân quyền**
-
+> * Có thể sẽ phải tắt GPO ở Lab trước nếu có lỗi `Accessing the resource ... has been disallowed`: Click vào GPO `Technical_User_Restrictions` -> Tab `Details` -> `All settings disabled`.
+> * Đồng thời nhớ bật Share của folder `Data` sẽ tạo ở dưới đây: Chuột phải vào folder `Data` -> `Properties` -> Tab `Sharing` -> `Advanced Sharing` -> Bật quyền Full Control cho Everyone.
 1.  Trên máy trạm `W10-CLIENT01`, đăng nhập bằng tài khoản `hungnq` (thuộc phòng IT).
 2.  Mở File Explorer, truy cập đường dẫn `\\FILESRV01`.
 3.  Mở thư mục `IT_Data` -> Bạn có thể tạo, xóa, sửa file thành công.
