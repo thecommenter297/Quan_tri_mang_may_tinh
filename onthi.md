@@ -2,8 +2,6 @@
 
 ### 1. PHẦN TRÍCH XUẤT LỆNH DS (Chạy trong Command Prompt/CMD)
 
-Đây là các lệnh y hệt trong ảnh của bạn:
-
 ```cmd
 # --- TẠO OU ---
 dsadd ou "OU=OU_KTMT,DC=khoacntt,DC=edu,DC=vn"
