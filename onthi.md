@@ -93,3 +93,7 @@ foreach ($u in $usersKH) {
 
 ## Câu 3:
 * Dùng Active Directory Users and Computers (ADUC), chuột phải vào OU yêu cầu để phân quyền, nhấn **Delegate Control**, sau đó cài đặt quyền cụ thể cho cá nhân được yêu cầu
+
+## Câu 4: GPO
+
+## Câu 5: Phân quyền GPO
