@@ -160,7 +160,7 @@ foreach ($u in $usersKH) {
 ### 4. GIÁM SÁT HỆ THỐNG (MONITORING)
 
 **A. Giám sát xóa file (Auditing) - Full Giao diện:**
-1.  **Bật công tắc:** Mở `Local Security Policy` (`secpol.msc`) -> `Advanced Audit Policy` -> `Object Access` -> **Audit File System** -> Chọn **Success**.
+1.  **Bật công tắc:** Mở **Server Manager** -> `Tools`-> `Local Security Policy` (`secpol.msc`) -> `Advanced Audit Policy` -> `Object Access` -> **Audit File System** -> Chọn **Success**.
 2.  **Chọn Folder:** Chuột phải Folder -> `Properties` -> `Security` -> `Advanced` -> Tab **Auditing** -> Add `Everyone` -> Tích chọn quyền **Delete**.
 3.  **Xem log:** Mở `Event Viewer` -> `Security` -> **Filter Current Log** -> Nhập ID **4663**.
 
