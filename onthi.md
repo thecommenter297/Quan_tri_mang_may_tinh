@@ -94,6 +94,97 @@ foreach ($u in $usersKH) {
 ## Câu 3:
 * Dùng Active Directory Users and Computers (ADUC), chuột phải vào OU yêu cầu để phân quyền, nhấn **Delegate Control**, sau đó cài đặt quyền cụ thể cho cá nhân được yêu cầu
 
-## Câu 4: GPO
+## Câu 4, 5, 6:
 
-## Câu 5: Phân quyền GPO
+---
+
+### 1. CHÍNH SÁCH NHÓM (GPO) & PHÂN QUYỀN GPO
+
+**A. Quy trình cấu hình GPO nhanh:**
+1.  **Mở công cụ:** `Group Policy Management`.
+2.  **Tạo & Link:** Chuột phải vào OU -> **Create a GPO in this domain, and Link it here...**.
+3.  **Tìm thiết lập:** Chuột phải GPO -> **Edit**.
+4.  **Đường dẫn tắt:** `User Configuration` -> `Administrative Templates` -> **All Settings**.
+    *   *Mẹo:* Nhấn phím ký tự đầu (ví dụ: `P` cho *Prevent access...*) để tìm nhanh tên chính sách.
+5.  **Cập nhật:** Trên Client gõ `gpupdate /force`.
+
+**B. Phân quyền quản trị GPO (Câu 5):**
+1.  **Chọn đối tượng áp dụng:** Tại tab **Scope** -> mục **Security Filtering** -> Add nhóm muốn thực thi chính sách (ví dụ: `Nhom_NhanVien`).
+2.  **Cấp quyền chỉnh sửa:** Tại tab **Delegation** -> Add người muốn quản lý (ví dụ: `TP_KT`) -> Chọn quyền **Edit settings, delete, and modify security**.
+
+---
+
+### 2. QUẢN LÝ TÀI NGUYÊN MẠNG
+
+**A. Chia sẻ File và Phân quyền NTFS:**
+1.  **Sharing:** Chuột phải Folder -> `Properties` -> `Sharing` -> `Advanced Sharing` -> Cấp quyền **Change** cho `Everyone`.
+2.  **NTFS (Security):** Tab `Security` -> `Advanced` -> **Disable Inheritance** -> **Remove all...** -> Add nhóm cụ thể (ví dụ: `GG_S_KT`) với quyền **Modify**.
+3.  **PowerShell tạo Share nhanh:** `New-SmbShare -Name "Ten_Share" -Path "C:\Data" -FullAccess "Everyone"`
+
+**B. Hạn mức dung lượng (Quota):**
+1.  **Công cụ:** `File Server Resource Manager` (FSRM).
+2.  **Thực hiện:** `Quota Management` -> `Quotas` -> **Create Quota**.
+3.  **Thông số:** Chọn đường dẫn thư mục -> Chọn **Hard Quota** -> Nhập dung lượng (100MB/500MB).
+
+**C. Quản lý Ổ đĩa (RAID):**
+1.  **Công cụ:** `diskmgmt.msc`.
+2.  **Chuẩn bị:** Chuột phải Disk -> **Online** -> **Initialize** (chọn GPT).
+3.  **Gộp đĩa:** Chuột phải Disk -> **Convert to Dynamic Disk**.
+4.  **Tạo RAID:** Chuột phải vào vùng trống -> Chọn **New Mirrored Volume** (RAID 1) hoặc **New RAID-5 Volume**.
+
+**D. Sao lưu (Backup):**
+1.  **Công cụ:** `Windows Server Backup`.
+2.  **Thực hiện:** Chọn **Backup Once** -> **Custom** -> **Add Items** (chọn thư mục cần sao lưu) -> Chọn nơi lưu (ổ đĩa khác hoặc folder mạng).
+
+---
+
+### 3. DỊCH VỤ DNS & DHCP
+
+**A. DHCP Server:**
+1.  **Ủy quyền (Bắt buộc):** Chuột phải tên Server trong giao diện DHCP -> **Authorize**.
+2.  **Tạo Scope:** Chuột phải `IPv4` -> `New Scope`. Nhập dải IP, Subnet Mask.
+3.  **Dải loại trừ:** Mục `Add Exclusions` (nhập dải IP dành cho Server/Router).
+4.  **Cấu hình Option:** Tích chọn cấu hình DNS (006) và Router (003) ngay trong Wizard.
+5.  **Giữ chỗ (Reservation):** Chuột phải mục `Reservations` -> Nhập IP muốn cố định và địa chỉ MAC của máy đó.
+
+**B. DNS Server:**
+1.  **Forward Zone:** Chuột phải `Forward Lookup Zones` -> `New Zone` -> Nhập tên miền (ví dụ: `bkaptech.vn`).
+2.  **Reverse Zone:** Chuột phải `Reverse Lookup Zones` -> `New Zone` -> Nhập Network ID (3 lớp đầu của IP, ví dụ `192.168.1`).
+3.  **Tạo bản ghi:**
+    *   **Host (A):** Trỏ tên máy về IP.
+    *   **Alias (CNAME):** Trỏ tên `www` về tên máy đã có bản ghi A.
+    *   **Pointer (PTR):** Chuột phải bản ghi A -> Tích chọn **Update associated pointer record**.
+
+---
+
+### 4. GIÁM SÁT HỆ THỐNG (MONITORING)
+
+**A. Giám sát xóa file (Auditing) - Full Giao diện:**
+1.  **Bật công tắc:** Mở `Local Security Policy` (`secpol.msc`) -> `Advanced Audit Policy` -> `Object Access` -> **Audit File System** -> Chọn **Success**.
+2.  **Chọn Folder:** Chuột phải Folder -> `Properties` -> `Security` -> `Advanced` -> Tab **Auditing** -> Add `Everyone` -> Tích chọn quyền **Delete**.
+3.  **Xem log:** Mở `Event Viewer` -> `Security` -> **Filter Current Log** -> Nhập ID **4663**.
+
+**B. Performance Monitor (Theo dõi hiệu năng):**
+1.  **Công cụ:** `perfmon.msc`.
+2.  **Thêm thông số:** Nhấn dấu **+** (xanh).
+3.  **Counter hay dùng:** 
+    *   `Processor` -> `% Processor Time` (CPU).
+    *   `Memory` -> `Available MBytes` (RAM trống).
+
+**C. Task Manager:**
+1.  **Mở nhanh:** `Ctrl + Shift + Esc`.
+2.  **Ứng dụng:** Xem nhanh ứng dụng nào đang treo hoặc ngốn RAM/CPU để End Task.
+
+---
+
+### MẸO JOIN DOMAIN BẰNG POWERSHELL (Cho máy Client Win 10)
+Nếu bạn lười click chuột qua nhiều bước trên Win 10:
+```powershell
+# 1. Đặt DNS về máy Server
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses "192.168.1.100"
+
+# 2. Join Domain (Máy sẽ hỏi mật khẩu Admin Domain)
+Add-Computer -DomainName "bkaptech.vn" -Restart
+```
+
+**Lời khuyên:** Hãy bám sát các từ khóa tiếng Anh trong bảng này, bạn sẽ tìm thấy mọi thứ trong mục **All Settings** của GPO.
