@@ -87,3 +87,9 @@ foreach ($u in $usersKH) {
 ```
 
 **Mẹo:** Trong phòng thi, nếu gõ `dsadd` bị báo lỗi *"command not found"*, hãy chắc chắn bạn đã cài đặt role **Active Directory Domain Services** và đang chạy CMD với quyền **Administrator**.
+
+## Câu 2:
+* Dùng Active Directory Users and Computers (ADUC) để cấu hình theo yêu cầu
+
+## Câu 3:
+* Dùng Active Directory Users and Computers (ADUC), chuột phải vào OU yêu cầu để phân quyền, nhấn **Delegate Control**, sau đó cài đặt quyền cụ thể cho cá nhân được yêu cầu
